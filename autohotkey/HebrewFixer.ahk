@@ -1,4 +1,5 @@
-#Requires AutoHotkey v2.0
+﻿#Requires AutoHotkey v2.0
+#SingleInstance Force
 
 EN := "qwertyuiop[]asdfghjkl;'zxcvbnm,./"
 HE := "/'קראטוןםפ][שדגכעיחלךף,זסבהנמצתץ."
@@ -12,13 +13,13 @@ HE := "/'קראטוןםפ][שדגכעיחלךף,זסבהנמצתץ."
         return
     }
     text := A_Clipboard
+    hebrewToEnglish := RegExMatch(text, "[א-ת]")
+    src := hebrewToEnglish ? HE : EN
+    dst := hebrewToEnglish ? EN : HE
     out := ""
     Loop Parse text {
-        ch := A_LoopField
-        pos := InStr(EN, ch, true)
-        if !pos
-            pos := InStr(EN, StrLower(ch), true)
-        out .= pos ? SubStr(HE, pos, 1) : ch
+        pos := InStr(src, A_LoopField, true)
+        out .= pos ? SubStr(dst, pos, 1) : A_LoopField
     }
     A_Clipboard := out
     Send "^v"

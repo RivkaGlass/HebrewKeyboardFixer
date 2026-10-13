@@ -1,12 +1,15 @@
 function fixSelection() {
   const EN = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
   const HE = "/'קראטוןםפ][שדגכעיחלךף,זסבהנמצתץ.";
-  const map = {};
+  const toHe = {}, toEn = {};
   for (let i = 0; i < EN.length; i++) {
-    map[EN[i]] = HE[i];
-    map[EN[i].toUpperCase()] = HE[i];
+    toHe[EN[i]] = HE[i];
+    toEn[HE[i]] = EN[i];
   }
-  const convert = t => [...t].map(c => map[c] || c).join("");
+  const convert = t => {
+    const map = /[א-ת]/.test(t) ? toEn : toHe;
+    return [...t].map(c => map[c] || c).join("");
+  };
 
   const el = document.activeElement;
   if (el && (el.tagName === "TEXTAREA" || el.tagName === "INPUT")) {
