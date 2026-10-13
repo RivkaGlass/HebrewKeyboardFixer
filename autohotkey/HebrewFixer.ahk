@@ -1,10 +1,15 @@
 ﻿#Requires AutoHotkey v2.0
 #SingleInstance Force
 
+; Hebrew Keyboard Fixer
+; Select text typed with the wrong keyboard layout and press Ctrl+Q.
+; To change the shortcut, edit the line that starts with ^q
+; ^ = Ctrl   ! = Alt   + = Shift   # = Windows key
+
 EN := "qwertyuiop[]asdfghjkl;'zxcvbnm,./"
 HE := "/'קראטוןםפ][שדגכעיחלךף,זסבהנמצתץ."
 
-^!h:: {
+^q:: {
     old := A_Clipboard
     A_Clipboard := ""
     Send "^c"
