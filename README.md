@@ -1,14 +1,9 @@
 # Hebrew Keyboard Fixer
 
-כלי לתיקון טקסט שהוקלד בטעות בפריסת מקלדת שגויה, בשני הכיוונים: אנגלית ← עברית ועברית ← אנגלית.
-Fix text typed with the wrong keyboard layout (English ⇄ Hebrew).
+סקריפט AutoHotkey ל-Windows לתיקון טקסט שהוקלד בטעות בפריסת מקלדת שגויה, בשני הכיוונים: אנגלית ← עברית ועברית ← אנגלית.
+Fix text typed with the wrong keyboard layout (English ⇄ Hebrew), system-wide on Windows.
 
-הפרויקט כולל שני כלים שעושים אותו דבר בשתי רמות:
-
-| כלי | איפה עובד | טכנולוגיה |
-|-----|-----------|-----------|
-| `chrome-extension` | בתוך הדפדפן (Chrome / Edge) | JavaScript, Manifest V3 |
-| `autohotkey` | בכל תוכנה ב-Windows (Word, WhatsApp, Notepad ועוד) | AutoHotkey v2 |
+הסקריפט עובד בכל תוכנה: Word, WhatsApp, Notepad, הדפדפן ועוד.
 
 ## דוגמאות
 
@@ -20,19 +15,6 @@ Fix text typed with the wrong keyboard layout (English ⇄ Hebrew).
 
 ## התקנה
 
-### הרחבת Chrome
-
-1. מורידים או משכפלים את הריפו.
-2. נכנסים ל-`chrome://extensions` (ב-Edge: `edge://extensions`).
-3. מפעילים **Developer mode**.
-4. לוחצים **Load unpacked** ובוחרים את התיקייה `chrome-extension`.
-5. נכנסים ל-`chrome://extensions/shortcuts` ומגדירים קיצור מקשים ל"הפוך טקסט מסומן" (למשל `Ctrl+Shift+Y`).
-
-**שימוש:** מסמנים טקסט בשדה כלשהו בדף אינטרנט רגיל ולוחצים על הקיצור.
-ההרחבה לא עובדת בדפי `chrome://` פנימיים.
-
-### סקריפט AutoHotkey (כל Windows)
-
 1. מתקינים [AutoHotkey v2](https://www.autohotkey.com).
 2. מריצים בלחיצה כפולה את `autohotkey/HebrewFixer.ahk`.
 3. אפשר להוסיף קיצור דרך לקובץ בתיקייה `shell:startup` כדי שירוץ עם עליית Windows.
@@ -43,8 +25,7 @@ Fix text typed with the wrong keyboard layout (English ⇄ Hebrew).
 
 - **מיפוי תווים:** שתי מחרוזות מקבילות, האחת עם המקשים באנגלית והשנייה עם האותיות שנמצאות באותם מקשים בפריסת המקלדת העברית. כל תו מוחלף בתו שנמצא באותו מקום.
 - **זיהוי כיוון:** אם בטקסט המסומן יש לפחות אות עברית אחת, ההמרה היא מעברית לאנגלית. אחרת, מאנגלית לעברית.
-- **הרחבת Chrome:** מקבלת קיצור מקשים דרך `chrome.commands`, ומריצה בדף פונקציה שמחליפה את הטקסט המסומן (בשדה טקסט או בטקסט רגיל בדף).
-- **AutoHotkey:** מעתיקה את הטקסט המסומן ללוח (`Ctrl+C`), ממירה אותו, מדביקה במקומו (`Ctrl+V`) ומחזירה ללוח את התוכן המקורי.
+- **הלוח:** הסקריפט מעתיק את הטקסט המסומן ללוח (`Ctrl+C`), ממיר אותו, מדביק במקומו (`Ctrl+V`) ומחזיר ללוח את התוכן המקורי.
 
 ## מגבלות
 
@@ -52,6 +33,7 @@ Fix text typed with the wrong keyboard layout (English ⇄ Hebrew).
 - תווים שאין להם התאמה (מספרים, רווחים וכדומה) נשארים כמו שהם.
 - אותיות גדולות באנגלית לא מומרות, בכוונה. מילה שיש בה אות גדולה אחת תומר חלקית.
 - סימני פיסוק כמו פסיק, נקודה, סוגריים מרובעים וקו נטוי הם מקשים שקיימים בשתי הפריסות, ולכן הם מומרים לפי מקום המקש.
+- עובד ב-Windows בלבד.
 
 ## תוכניות להמשך
 
